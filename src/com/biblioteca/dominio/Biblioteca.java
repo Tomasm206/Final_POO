@@ -57,11 +57,11 @@ public class Biblioteca {
         return this.biblioteca.stream().filter(pres -> pres.prestado).toList();
     }
     public List<Copiable> listarCopiasPorRecurso(){
-        biblioteca.toString();
+        biblioteca.stream()
+                .forEach(cop -> System.out.println(cop.nombre + "Se ha fotocopiado" + cop.nroCopias  + "veces"));
         return biblioteca.stream()
                 .filter(cop -> cop instanceof Copiable)
                 .map(cop -> (Copiable) cop)
                 .collect(Collectors.toList());
     }
-
 }
