@@ -58,10 +58,8 @@ public class Biblioteca {
     }
     public List<Copiable> listarCopiasPorRecurso(){
         biblioteca.stream()
-                .forEach(cop -> System.out.println(cop.nombre + "Se ha fotocopiado" + cop.nroCopias  + "veces"));
-        return biblioteca.stream()
                 .filter(cop -> cop instanceof Copiable)
-                .map(cop -> (Copiable) cop)
-                .collect(Collectors.toList());
+                .forEach(cop -> System.out.println(cop.nombre + "Se ha fotocopiado" + cop.nroCopias  + "veces"));
+        return null;
     }
 }
