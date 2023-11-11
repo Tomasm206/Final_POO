@@ -13,7 +13,7 @@ public class Biblioteca {
         if (!biblioteca.equals(recurso)){
             biblioteca.add(recurso);
         } else {
-            System.out.println("El libro no existe en la biblioteca");
+            System.out.println("El recurso ya existe en la biblioteca");
         }
     }
     public boolean prestar(String codigo){
@@ -21,12 +21,10 @@ public class Biblioteca {
             if (recurso.codigo.equals(codigo) && recurso instanceof Prestable){
                 ((Prestable) recurso).prestar();
                 return true;
-            }else{
-                if (recurso.prestado && recurso instanceof Prestable){
-                    throw new RecursoPrestadoException();
-                }else {
-                    throw new RecursoNoPrestableException();
-                }
+            }else if (recurso.prestado && recurso instanceof Prestable){
+                throw new RecursoPrestadoException();
+            }else {
+                throw new RecursoNoPrestableException();
             }
         }
         return false;
@@ -47,12 +45,10 @@ public class Biblioteca {
             if (recurso.codigo.equals(codigo) && recurso instanceof Copiable){
                 ((Copiable) recurso).fotocopiar();
                 return true;
+            }else if (!(recurso instanceof Copiable)){
+                throw new RecursoNoFotocopiableException();
             }else {
-                if (!(recurso instanceof Copiable)){
-                    throw new RecursoNoFotocopiableException();
-                }else {
-                    System.out.println("No esta en la biblioteca");
-                }
+                System.out.println("No esta en la biblioteca");
             }
         }
         return false;
